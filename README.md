@@ -35,7 +35,7 @@ This is how the end input to to encrypted looks like:
 
 ### The attack
 
-The attack cointains two phases: a prepartion phase and brute-forcing phase.
+The attack contains two phases: a preparation phase and a brute-forcing phase.
 
 1. Preparation  
 In this phase the length of the prefix and suffix is determined. First, a long 
