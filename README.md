@@ -1,7 +1,7 @@
 
 ## ECB Adaptive Chosen Plaintext
 
-This is a simple tool I wrote while solving a challenge at [overthewire][http://overthewire.org]. It aims to automatically launch an adaptive chosen plaintext attack against 
+This is a simple tool I wrote while solving a challenge at [overthewire](http://overthewire.org). It aims to automatically launch an adaptive chosen plaintext attack against 
 some application using blockcipher in [ECB](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_(ECB)) operation mode. When all the assumptions
 are fulfilled it can brute force the whole secret plaintext. 
 
@@ -13,19 +13,19 @@ number of times.
 * All texts are ASCII strings.
 * The _input string_ (the payload) of the attacker will be prepended by a (unknown) _prefix_ and appended by a _suffix_ which is the secret plaintext:
 
-  <--block length-->
-  _________________ 
-  |                |
-  |     prefix     |
-  |       _________|
-  |_______|        |
-  |                |
-  |     payload    |
-  |          ______|
-  |__________|     |
-  |                |
-  |     suffix     |
-  |________________|
+  <--block length-->  
+  _________________   
+  |                |  
+  |     prefix     |  
+  |       _________|  
+  |_______|        |  
+  |                |  
+  |     payload    |  
+  |          ______|  
+  |__________|     |  
+  |                |  
+  |     suffix     |  
+  |________________|  
 
 * [PKCS#7](https://tools.ietf.org/html/rfc2315) padding is used.
 
@@ -48,19 +48,19 @@ that the payload is "padded" by the next unknown character of the suffix. He the
 tries out all possible characters until the corresponding ciphertext block matches
 the expected one (which is the one yielded by the real character):
 
-  <--block length-->
-  _________________ 
-  |                |
-  |     prefix     |
-  |       _________|
-  |_______|        |
-  |                |
-  |     payload    |
-  |              __|
-  |______________|c| <--- "padded" by the next unknown character
-  |                |
-  |     suffix     |
-  |________________|
+  <--block length-->   
+  _________________   
+  |                |  
+  |     prefix     |  
+  |       _________|  
+  |_______|        |  
+  |                |  
+  |     payload    |  
+  |              __|  
+  |______________|c| <--- "padded" by the next unknown character  
+  |                |  
+  |     suffix     |  
+  |________________|  
 
 ### Usage
 
