@@ -14,18 +14,19 @@ number of times.
 * The _input string_ (the payload) of the attacker will be prepended by a (unknown) _prefix_ and appended by a _suffix_ which is the secret plaintext:
 
   <--block length-->  
-  _________________   
-  |                |  
-  |     prefix     |  
-  |       _________|  
-  |_______|        |  
-  |                |  
-  |     payload    |  
-  |          ______|  
-  |__________|     |  
-  |                |  
-  |     suffix     |  
-  |________________|  
+  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~prefix~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~~~~::::::::|  
+  |::::::::::::::::|  
+  |:::::payload::::|  
+  |::::::::::::::::|  
+  |:::::::::::~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~suffix~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
 
 * [PKCS#7](https://tools.ietf.org/html/rfc2315) padding is used.
 
@@ -48,19 +49,20 @@ that the payload is "padded" by the next unknown character of the suffix. He the
 tries out all possible characters until the corresponding ciphertext block matches
 the expected one (which is the one yielded by the real character):
 
-  <--block length-->   
-  _________________   
-  |                |  
-  |     prefix     |  
-  |       _________|  
-  |_______|        |  
-  |                |  
-  |     payload    |  
-  |              __|  
-  |______________|c| <--- "padded" by the next unknown character  
-  |                |  
-  |     suffix     |  
-  |________________|  
+  <--block length-->  
+  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~prefix~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~~~~::::::::|  
+  |::::::::::::::::|  
+  |:::::payload::::|  
+  |::::::::::::::::|  
+  |:::::::::::::::C|<-- Padded with the next unknown character C    
+  |~~~~~~~~~~~~~~~~|  
+  |~~~~~suffix~~~~~|  
+  |~~~~~~~~~~~~~~~~|  
 
 ### Usage
 
