@@ -76,10 +76,17 @@ This tool is modular in the way how data is encrypted. You have to implement
 your own encryption module in the package _encryption_. Your module must provide
 an _encrypt_ function which takes a string and returns the hex string of the 
 corresponding ciphertext.  
+
 The default encryption module is _noencrypt_ which does nothing but adding a 
 prefix, a suffix and padding according to PKCS#7.  
+
+### Test
+
 The encryption module _natas_ is an example of a module that sends input to 
 a web application for it to be processed and  encrypted there, and returns what 
 the web application returns to it. This module was used to solve the natas28
 challenge, but due to input escaping only one character of the suffix could be 
-determined.
+determined. To run the test and print out all sent payloads:
+
+```shell
+python3 ecbacp.py --enc natas --probe 20 -v
