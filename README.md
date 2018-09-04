@@ -7,13 +7,13 @@ are fulfilled it can brute force the whole secret plaintext.
 
 ### Assumptions
 
-* The attacker has unlimited acces to the encrypting function of the target. 
-This means he can commands the target to encypt stuff for him for an infinite 
+* The attacker has unlimited access to the encrypting function of the target. 
+This means he can commands the target to encrypt stuff for him for an infinite 
 number of times.
 * All texts are ASCII strings.
 * The _input string_ (the payload) of the attacker will be prepended by a (unknown) _prefix_ and appended by a _suffix_ which is the secret plaintext.
 
-This is how the end input to to encrypted looks like:
+This is how the end input to be encrypted looks like:
 
     +--------+-------+
     |     prefix     |
@@ -32,10 +32,11 @@ This is how the end input to to encrypted looks like:
     +--------+-------+
 
 * [PKCS#7](https://tools.ietf.org/html/rfc2315) padding is used.
+* The input of the attacker is not escaped/truncated before the encryption.
 
 ### The attack
 
-The attack cointains two phases: a prepartion phase and brute-forcing phase.
+The attack contains two phases: a prepartion phase and a brute-forcing phase.
 
 1. Preparation  
 In this phase the length of the prefix and suffix is determined. First, a long 
@@ -43,16 +44,16 @@ string of some _junk_ character is encrypted as the probing payload. Due to the
 semantically insecurity of ECB the attacker can recognize pattern in the returned
 ciphertext. Based on this information the attacker can find out the length of the
 prefix. Having this information he can further calculate the length of the suffix
-by stepwise increasing the payload length and observing changes in the ciphertext.
+by stepwisely increasing the payload length and observing changes in the ciphertext.
 
-2. Brute-forcing
+2. Brute-forcing  
 In this phase the attacker determines the secret suffix character by character.
 Based on the information from the previous phase he can craft the payload such
 that the payload is "padded" by the next unknown character of the suffix. He then
 tries out all possible characters until the corresponding ciphertext block matches
 the expected one (which is the one yielded by the real character).
 
-Guessing the first character of suffix:
+Guessing the first character of the suffix:
 
     +--------+-----+-+
     |     prefix     |
